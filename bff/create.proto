@@ -1,0 +1,89 @@
+syntax = "proto3";
+
+option go_package ="./week2demo";
+
+package create;
+
+// ------------------------------------ 
+// Messages
+// ------------------------------------ 
+
+//--------------------------------goods--------------------------------
+message Goods {
+  int64 id = 1; //商品Id
+  string name = 2; //商品名称
+  double price = 3; //商品价格
+  int64 stock = 4; //商品库存
+  string typer = 5; //商品类型
+  string strtus = 6; //商品状态
+}
+
+message AddGoodsReq {
+  string name = 1; //商品名称
+  double price = 2; //商品价格
+  int64 stock = 3; //商品库存
+  string typer = 4; //商品类型
+  string strtus = 5; //商品状态
+}
+
+message AddGoodsResp {
+}
+
+message UpdateGoodsReq {
+  int64 id = 1; //商品Id
+  string name = 2; //商品名称
+  double price = 3; //商品价格
+  int64 stock = 4; //商品库存
+  string typer = 5; //商品类型
+  string strtus = 6; //商品状态
+}
+
+message UpdateGoodsResp {
+}
+
+message DelGoodsReq {
+  int64 id = 1; //id
+}
+
+message DelGoodsResp {
+}
+
+message GetGoodsByIdReq {
+  int64 id = 1; //id
+}
+
+message GetGoodsByIdResp {
+  Goods goods = 1; //goods
+}
+
+message SearchGoodsReq {
+  int64 page = 1; //page
+  int64 limit = 2; //limit
+  int64 id = 3; //商品Id
+  string name = 4; //商品名称
+  double price = 5; //商品价格
+  int64 stock = 6; //商品库存
+  string typer = 7; //商品类型
+  string strtus = 8; //商品状态
+}
+
+message SearchGoodsResp {
+  repeated Goods goods = 1; //goods
+}
+
+
+
+// ------------------------------------ 
+// Rpc Func
+// ------------------------------------ 
+
+service create{ 
+
+	 //-----------------------goods----------------------- 
+	 rpc AddGoods(AddGoodsReq) returns (AddGoodsResp); 
+	 rpc UpdateGoods(UpdateGoodsReq) returns (UpdateGoodsResp); 
+	 rpc DelGoods(DelGoodsReq) returns (DelGoodsResp); 
+	 rpc GetGoodsById(GetGoodsByIdReq) returns (GetGoodsByIdResp); 
+	 rpc SearchGoods(SearchGoodsReq) returns (SearchGoodsResp); 
+
+}
